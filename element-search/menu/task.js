@@ -1,35 +1,60 @@
-//1. Поиск menu__link с родителем menu__item"
-//2. Поиск menu_sub (возможно нужен только первый)
-// Функция присваиваения menu_active объекту с классом menu_sub
-// Вызов фуункции по клику на 1. пункт
 
 let link = document.querySelectorAll(".menu__link");
 let arrLink = Array.from(link);
-let subMenu = document.querySelectorAll(".menu_sub");
-let arrSubMenu = Array.from(subMenu);
 
 
-function openMenu() {
-	arrSubMenu.forEach(function (i) {
-		if (i.classList.contains("menu_active")) {
-		    i.classList.remove("menu_active");	
-		} else {
-			i.classList.add("menu_active");
-		}
+function openMenu (event) {
+	
+    let clickElem = event.target;
+	console.log(clickElem);
 		
-	});
-    return false;
-}
+    let bro = clickElem.nextElementSibling;
+    console.log(bro);
 
+    if (bro.classList.contains("menu_sub")) {
+		bro.classList.toggle("menu_active");
+	} 
+	return false;
+}	
 
 arrLink.forEach(function(i) {
 	i.onclick = openMenu; 
 });
 
-//----------------------------------
 
-/*if ((arrSubMenu.closest(".menu__item")) == (arrLink.closest(".menu__item"))) {
-    arrLink.forEach(function(i) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*function openMenu(event) {
+console.log(event.target.nextSibling.classList.contains("menu_sub"));
+//let activeMenu = event.currentTarget.nextSibling.classList.contains("menu_sub");
+/*  if (activeMenu == true) { 
+  	console.log("прокатило")
+	/*arrSubMenu.forEach(function (i) {
+		  i.classList.toggle("menu_active");	
+	});
+    return false;
+  };
+};
+
+
+arrLink.forEach(function(i) {
 	i.onclick = openMenu; 
-});
-}*/
+}); */
