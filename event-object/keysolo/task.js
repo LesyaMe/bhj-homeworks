@@ -17,7 +17,31 @@ class Game {
   }
 
   registerEvents() {
+    let tcs = this.currentSymbol.textContent;
+    let callSuccess = this.success;
+    
+    document.addEventListener('keypress', function(event) {
+      console.log(tcs); 
+      console.log(event.key);
+                  
+      if (event.key === tcs) {
+        //console.log("должно работать");
+        this.success();  
+      } else {
+        this.fail();  
+      }
+    });
+
+   /* let windSimbol = this.currentSymbol;
+    let keyboardSimbol = document.KeyboardEvent;
+
+    console.log(windSimbol);
+    console.log(window.keypress.KeyboardEvent.char);
     /*
+    window.onkeypress
+    event.keyCode
+     KeyboardEvent.char — возвращает DOMString, представляющий символьное значение клавиши; 
+
       TODO:
       Написать обработчик события, который откликается
       на каждый введённый символ.
