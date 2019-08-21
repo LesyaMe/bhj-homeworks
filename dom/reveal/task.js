@@ -1,39 +1,16 @@
-    
-let advantage = document.querySelectorAll(".reveal");
-let arrAdv = Array.from(advantage);
-let viewportHeight = window.innerHeight;
+let advant = document.querySelectorAll(".reveal");
+let arrAdvant = Array.from(advant);
 
 
-for (let i = 0; i < arrAdv.length; i++) {
-    
-    let elementBottom = arrAdv[i].getBoundingClientRect().bottom;
-    function show () {
-        return arrAdv[i].classList.add("reveal_active");    
-    } 
-
-    if (elementBottom < viewportHeight) {
-        document.addEventListener("scroll", show);    
-    }
-      
-}
-
-
-/*работает только при перезагрузке страницы и открывает блок сразу*/
-
-
-/* ===Вариат, показывающий только 1й блок ===  
-let advantage = document.querySelector(".reveal")
-console.log(advantage.getBoundingClientRect().top);
-
-
-function showElem () {
+function showBlock() {
     const viewportHeight = window.innerHeight;
-    const elementTop = advantage.getBoundingClientRect().top;
-    const elementBottom = advantage.getBoundingClientRect().bottom;
-    if (elementTop < viewportHeight) {
-        return advantage.classList.add("reveal_active");    
+
+    for (let i=0; i < arrAdvant.length; i++) {
+      let elementBottom = arrAdvant[i].getBoundingClientRect().bottom;
+
+      if (elementBottom < viewportHeight) {
+        arrAdvant[i].classList.add("reveal_active");    
+      }
     }
 }
-
-document.addEventListener("scroll", showElem);
-======================================================*/
+document.addEventListener("scroll", showBlock);
