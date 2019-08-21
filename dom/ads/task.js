@@ -9,7 +9,7 @@ let current = 1;
 
 
 function showNextCase(n) {
-   
+    
 	if (n < 1) {
 		current = arrRotattor.length;
 	} else if (n > arrRotattor.length) {
@@ -17,24 +17,18 @@ function showNextCase(n) {
 		current = 1;
 	}
 
+	
+
 	for (let i = 0; i < arrRotattor.length; i++ ) {
 		arrRotattor[i].classList.remove("rotator__case_active");
 	}
-	current = current+=1;
+	
     arrRotattor[current].classList.add("rotator__case_active");
+    current = current+=1;
+
 }
 
-//  в этом виде все работет, только одним из элементов цикла появляется "Я"
-let id = setInterval("showNextCase(current)", 1000);
 
-/*========так ничего не работает==============
-let id = setInterval(showNextCase(current), 700);
-============================================*/
-
-
-/*============так проходит только 1 цикл, завершается на "Я"
-let id = setInterval('showNextCase()', 700);
-===========================================*/
-
-
-
+let id = setInterval(() => {
+	showNextCase(current)}
+	, 1000);
