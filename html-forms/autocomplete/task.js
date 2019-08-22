@@ -68,9 +68,40 @@ class Autocomplete {
   }
 
   getMatches( text ) {
+    let searchField = document.querySelector(".autocomplete__search");
+    text = searchField.value;
+
+    let optionsContainer = document.querySelector(".autocomplete__input");
+    let Options = optionsContainer.options;
+    let arrOptions = Array.from(Options);
+    console.log(arrOptions[1].options[arrOptions[1].selectedIndex].text)
+    
+    searchField.addEventListener("input", (evnt) => {
+      for (let irr = 0; irr < arrOptions.length; irr++) {
+       let n = 0;
+
+       //console.log(arrOptions[1].options[arrOptions[1].selectedIndex].text)
+ 
+       if (arrOptions[irr].options.text.includes(text)) {
+        console.log(12);   
+
+        return [
+          {
+           text: arrOptions[irr].text,
+           value: arrOptions[irr].value
+          }
+        ];
+    
+        }
+
+        n++; 
+      }
+    })
+    
     /*
       TODO: этот метод нужно дописать
       text - фраза, которую вводят в поле поиска
+
       Метод должен вернуть массив.
 
       Он формируется на основе списка опций select-элемента (this.input)
@@ -81,10 +112,10 @@ class Autocomplete {
         value: 'Содержимое атрибута value'
       }
     */
-    return [
+   return [
       {
-        text: 'Чубакка',
-        value: '1'
+        text: arrOptions[1].text,
+        value: arrOptions[1].value
       }
     ];
   }
