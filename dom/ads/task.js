@@ -8,27 +8,22 @@ Rак это иправить?*/
 let current = 1;
 
 
-function showNextCase(n) {
+function showNextCase() {
     
-	if (n < 1) {
-		current = arrRotattor.length;
-	} else if (n > arrRotattor.length) {
-		n = 0;
-		current = 1;
-	}
 
-	
+    for (let i = 0; i < arrRotattor.length; i++ ) {
 
-	for (let i = 0; i < arrRotattor.length; i++ ) {
 		arrRotattor[i].classList.remove("rotator__case_active");
+		arrRotattor[current].classList.add("rotator__case_active");
+        
 	}
-	
-    arrRotattor[current].classList.add("rotator__case_active");
+    
     current = current+=1;
 
+	if (current >= arrRotattor.length) {
+		current = 0;
+	}     
+	
 }
 
-
-let id = setInterval(() => {
-	showNextCase(current)}
-	, 1000);
+let id = setInterval(showNextCase, 1000);
