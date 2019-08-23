@@ -56,9 +56,9 @@ class Autocomplete {
 
   renderMatches( matches ) {
     const html = matches.map( item => `
-    	<li>
+      <li>
         <span class="autocomplete__item"
-        	data-index="${item.index}"
+          data-index="${item.index}"
           data-id="${item.value}"
         >${item.text}</span>
       </li>
@@ -68,56 +68,17 @@ class Autocomplete {
   }
 
   getMatches( text ) {
-    let searchField = document.querySelector(".autocomplete__search");
-    text = searchField.value;
 
-    let optionsContainer = document.querySelector(".autocomplete__input");
-    let Options = optionsContainer.options;
-    let arrOptions = Array.from(Options);
-    console.log(arrOptions[1].options[arrOptions[1].selectedIndex].text)
-    
-    searchField.addEventListener("input", (evnt) => {
-      for (let irr = 0; irr < arrOptions.length; irr++) {
-       let n = 0;
+    const inputWord = this.input.options;
+    let words = [];
 
-       //console.log(arrOptions[1].options[arrOptions[1].selectedIndex].text)
- 
-       if (arrOptions[irr].options.text.includes(text)) {
-        console.log(12);   
-
-        return [
-          {
-           text: arrOptions[irr].text,
-           value: arrOptions[irr].value
-          }
-        ];
-    
-        }
-
-        n++; 
+    for (let word of inputWord) {
+      if (word.textContent.includes(text)) {
+        words.push(word);
       }
-    })
+    }
     
-    /*
-      TODO: этот метод нужно дописать
-      text - фраза, которую вводят в поле поиска
-
-      Метод должен вернуть массив.
-
-      Он формируется на основе списка опций select-элемента (this.input)
-      Подходящие опции - те, чей текст содержит то, что есть в аргументе text
-      Необходимо вернуть массив объектов со свойствами:
-      {
-        text: 'Содержимое <option>',
-        value: 'Содержимое атрибута value'
-      }
-    */
-   return [
-      {
-        text: arrOptions[1].text,
-        value: arrOptions[1].value
-      }
-    ];
+    return words;
   }
 }
 
